@@ -4,7 +4,7 @@ sudo apt-get update
 sudo apt-get install curl
 sudo apt-get install mysql-client
 
-GITHUB_REPO_URL="https://github.com/yourusername/your-repo-name"
+GITHUB_REPO_URL="https://github.com/ackn0wl3dgm3nt/mysql-s3-backup"
 INSTALL_DIR="/opt/mysql_backup"
 SERVICE_FILE="mysql_backup.service"
 TIMER_FILE="mysql_backup.timer"
