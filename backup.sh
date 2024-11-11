@@ -1,7 +1,6 @@
 #!/bin/bash
 
-set +e
-export $(grep -v '^#' .env | xargs)
+export $(grep -v '^#' /opt/mysql_backup/.env | xargs)
 
 BACKUP_DIR="/var/lib/mysql_backups"
 TIMESTAMP=$(date +"%F_%T")
@@ -19,8 +18,8 @@ fi
 gzip "$BACKUP_FILE"
 BACKUP_FILE_GZ="$BACKUP_FILE.gz"
 
-aws s3 cp "$BACKUP_FILE_GZ" "$S3_BUCKET/"
+s3cmd put "$BACKUP_FILE_GZ" "$S3_BUCKET/"
 
-find "$BACKUP_DIR" -type f -name "*.gz" -mtime +7 -exec rm {} \;
+#find "$BACKUP_DIR" -type f -name "*.gz" -mtime +7 -exec rm {} \;
 
 echo "Backup completed and uploaded to S3: $S3_BUCKET/$(basename "$BACKUP_FILE_GZ")"

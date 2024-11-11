@@ -1,8 +1,8 @@
 #!/bin/bash
 
+echo "Update and install dependencies"
 sudo apt-get update
-sudo apt-get install curl
-sudo apt-get install mysql-client
+sudo apt-get install curl mysql-client s3cmd -y
 
 GITHUB_REPO_URL="https://github.com/ackn0wl3dgm3nt/mysql-s3-backup"
 INSTALL_DIR="/opt/mysql_backup"
